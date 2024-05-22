@@ -3,26 +3,25 @@ const Post = () => {
     <div className="post">
       <div className="image">
         <img
-          src="https://plus.unsplash.com/premium_photo-1715876234545-88509db72eb3?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*xSQxT5-4mn4-gcyyUS9fhA.png"
           alt=""
         />
       </div>
       <div className="texts">
-        <h2>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Neque
-          perspiciatis ex itaque hic obcaecati amet aut. Quo dolores vitae
-          tenetur architecto quas, consectetur enim praesentium, quos cumque
-          accusantium minus odit officia cum.
-        </h2>
+        <h2>Tips on How to Write Your First Successful Technical Blog</h2>
         <p className="info">
           <a className="author">Mridul Pandey</a>
           <time>2023-01-06 16:45</time>
         </p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere non
-          dolores, voluptatem totam sint nobis ipsam! Quos repellendus, debitis
-          fugiat provident dolore amet quidem accusantium, atque suscipit
-          corporis, aliquam esse odit rem.
+        <p> 
+          If you have never written a technical blog before, it can
+          seem a bit overwhelming. You might even be asking yourself, “Where do
+          I even start?” If you find yourself in this position, the point of
+          this blog is to help break down the whole process into something a
+          little more easily digestible. Once you know some of the fundamental
+          building blocks, the actual writing process will be a lot easier. But
+          before diving into how to create a blog, I will briefly discuss why
+          you should write one.
         </p>
       </div>
     </div>
