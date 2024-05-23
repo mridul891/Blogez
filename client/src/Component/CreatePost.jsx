@@ -28,9 +28,24 @@ const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [summary, setSummary] = useState("");
   const [content, setContent] = useState("");
+  const [files, setFiles] = useState("");
 
+  const createnewPost = async (e) => {
+    const data = new FormData();
+    data.set("title", title);
+    data.set("summary", summary);
+    data.set("content", content);
+    // this will select the first file only and skip rest all
+    data.set("file", files[0]);
+    e.preventDefault();
+    const response = await fetch("http://localhost:3000/post", {
+      method: "POST",
+      body: data,
+    });
+    console.log(await response.json());
+  };
   return (
-    <form>
+    <form onSubmit={createnewPost}>
       <input
         type="title"
         placeholder={"Title"}
@@ -41,7 +56,11 @@ const CreatePost = () => {
         placeholder={"Summary"}
         onChange={(e) => setSummary(e.target.value)}
       />
-      <input type="file" />
+      <input
+        type="file"
+        onChange={(e) => setFiles(e.target.files)}
+        name="file"
+      />
       <ReactQuill
         value={content}
         modules={modules}

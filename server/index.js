@@ -6,9 +6,14 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
+const multer = require("multer")
+const fs = require('fs')
+
+// upload middleware
+const uploadMiddleware = multer({ dest: 'uploads/' })
 // Models imports
 const UserModel = require("./models/User");
-
+const PostModel = require('./models/Post')
 
 // cors and middleware setup
 app.use(cors({ credentials: true, origin: ['http://localhost:5173'] }));
@@ -71,6 +76,26 @@ app.get('/profile', async (req, res) => {
 // logout endpoint 
 app.post('/logout', (req, res) => {
     res.cookie('token', '').json('ok')
+})
+
+// Create post endpoint
+
+app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
+    const { originalname, path } = req.file;
+    const parts = originalname.split('.');
+    const ext = parts[parts.length - 1];
+    const newPath = path + '.' + ext;
+    fs.renameSync(path, newPath)
+
+    const { title, summary, content } = req.body
+    const postDoc = await PostModel.create({
+        title,
+        summary,
+        content,
+        cover: newPath
+    });
+
+    res.json(postDoc)
 })
 
 // Server listing at
