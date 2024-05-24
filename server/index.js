@@ -18,7 +18,8 @@ const PostModel = require('./models/Post')
 // cors and middleware setup
 app.use(cors({ credentials: true, origin: ['http://localhost:5173'] }));
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
+app.use('/uploads', express.static(__dirname + "/uploads"))
 
 // salt for bcyrpt
 const salt = bcrypt.genSaltSync(10);
@@ -66,7 +67,7 @@ app.post('/login', async (req, res) => {
 // profile endpoint
 app.get('/profile', async (req, res) => {
     const { token } = req.cookies;
-    jwt.verify(token, jwtSecret, {}, (err, info) => {
+    await jwt.verify(token, jwtSecret, {}, (err, info) => {
         if (err) throw err;
         res.json(info)
     })
@@ -96,7 +97,7 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
             summary,
             content,
             cover: newPath,
-            author:info.id
+            author: info.id
         });
         res.json(postDoc)
     })
@@ -104,7 +105,20 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 
 // to fetch data
 app.get('/post', async (req, res) => {
-    res.json(await PostModel.find())
+    res.json(
+        await PostModel.find()
+            .populate('author', ['username'])
+            .sort({ createdAt: -1 })
+            .limit(20)
+    )
+})
+
+
+// getting the post from some id 
+app.get('/post/:id', async (req, res) => {
+    const { id } = req.params;
+    const posDoc = await PostModel.findById(id).populate('author', ['username'])
+    res.json(posDoc)
 })
 
 // Server listing at
