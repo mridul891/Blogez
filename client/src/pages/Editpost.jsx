@@ -13,7 +13,7 @@ const Editpost = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch("http://localhost:3000/post/" + id)
+    fetch("https://blogez.onrender.com/post/" + id)
       .then((response) => response.json())
       .then((postinfo) => {
         console.log(postinfo);
