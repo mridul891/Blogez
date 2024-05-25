@@ -6,13 +6,13 @@ const Header = () => {
   const { setUserInfo, userInfo } = useContext(UserContext);
 
   // fetching  whether user is logged in or not
-  useEffect(() => {
-    fetch("http://localhost:3000/profile", {
-      credentials: "include",
-    })
-      .then((response) => response.json())
-      .then((info) => setUserInfo(info));
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/profile", {
+  //     credentials: "include",
+  //   })
+  //     .then((response) => response.json())
+  //     .then((info) => setUserInfo(info));
+  // }, []);
 
   // Loggout functionality
   const logout = async () => {

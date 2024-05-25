@@ -13,7 +13,7 @@ const fs = require('fs')
 const uploadMiddleware = multer({ dest: 'uploads/' })
 // Models imports
 const UserModel = require("./models/User");
-const PostModel = require('./models/Post')
+const PostModel = require('./models/Post');
 
 // cors and middleware setup
 app.use(cors({ credentials: true, origin: ['http://localhost:5173'] }));
@@ -106,7 +106,8 @@ app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
 // to fetch data
 app.get('/post', async (req, res) => {
     res.json(
-        await PostModel.find()
+        await PostModel
+            .find()
             .populate('author', ['username'])
             .sort({ createdAt: -1 })
             .limit(20)
@@ -120,6 +121,38 @@ app.get('/post/:id', async (req, res) => {
     const posDoc = await PostModel.findById(id).populate('author', ['username'])
     res.json(posDoc)
 })
+
+//api for editing
+app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
+    let newPath = null;
+    if (req.file) {
+        const { originalname, path } = req.file;
+        const parts = originalname.split('.');
+        const ext = parts[parts.length - 1];
+        newPath = path + ' . ' + ext;
+        fs.renameSync(path, newPath);
+    }
+
+    const { token } = req.cookies;
+    jwt.verify(token, jwtSecret, {}, async (err, info) => {
+        if (err) throw err;
+
+        const { id, title, summary, content } = req.body
+        const postDoc = await PostModel.findById(id)
+
+        const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
+        if (!isAuthor) {
+            res.status(400).json('You are not an author')
+        }
+        await postDoc.updateOne({ 
+            title, 
+            summary,
+            content, 
+            cover: newPath ? newPath : postDoc.cover })
+
+        res.json(postDoc)
+    })
+});
 
 // Server listing at
 app.listen(3000, () => console.log("server running at port localhost:3000"))
