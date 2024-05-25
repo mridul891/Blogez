@@ -16,7 +16,12 @@ const UserModel = require("./models/User");
 const PostModel = require('./models/Post');
 
 // cors and middleware setup
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + "/uploads"))
