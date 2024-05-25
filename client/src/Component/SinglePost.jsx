@@ -7,7 +7,7 @@ const SinglePost = () => {
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:3000/post/${id}`)
+    fetch(`https://blogez.onrender.com/post/${id}`)
       .then((response) => response.json())
       .then((postInfo) => setPostinfo(postInfo));
   }, []);
@@ -42,7 +42,7 @@ const SinglePost = () => {
       )}
 
       <div className="image">
-        <img src={`http://localhost:3000/${postinfo.cover}`} alt="" />
+        <img src={`https://blogez.onrender.com/${postinfo.cover}`} alt="" />
       </div>
       <div
         className="content"

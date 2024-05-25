@@ -41,7 +41,7 @@ const CreatePost = () => {
     // this will select the first file only and skip rest all
     data.set("file", files[0]);
     e.preventDefault();
-    const response = await fetch("http://localhost:3000/post", {
+    const response = await fetch("https://blogez.onrender.com/post", {
       method: "POST",
       body: data,
       credentials: "include",
