@@ -16,7 +16,7 @@ const UserModel = require("./models/User");
 const PostModel = require('./models/Post');
 
 // cors and middleware setup
-app.use(cors({ credentials: true, origin: ['http://localhost:5173/'] }));
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(__dirname + "/uploads"))
@@ -144,11 +144,12 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
         if (!isAuthor) {
             res.status(400).json('You are not an author')
         }
-        await postDoc.updateOne({ 
-            title, 
+        await postDoc.updateOne({
+            title,
             summary,
-            content, 
-            cover: newPath ? newPath : postDoc.cover })
+            content,
+            cover: newPath ? newPath : postDoc.cover
+        })
 
         res.json(postDoc)
     })
