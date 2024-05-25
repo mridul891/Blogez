@@ -15,14 +15,11 @@ const uploadMiddleware = multer({ dest: 'uploads/' })
 const UserModel = require("./models/User");
 const PostModel = require('./models/Post');
 
-// cors and middleware setup
-const corsOptions = {
-    credentials: true,
-    origin: ['http://localhost:5173'],
-};
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: 'http://localhost:5173', // specify the frontend URL
+    credentials: true, }));
 app.use('/uploads', express.static(__dirname + "/uploads"))
 
 // salt for bcyrpt

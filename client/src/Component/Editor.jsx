@@ -11,19 +11,7 @@ const Editor = ({ value, onChange }) => {
     ],
   };
 
-  const formats = [
-    "headers",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image",
-  ];
+  
   return (
     <ReactQuill
       value={value}
