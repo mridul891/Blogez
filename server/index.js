@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const app = express();
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
@@ -15,11 +16,15 @@ const uploadMiddleware = multer({ dest: 'uploads/' })
 const UserModel = require("./models/User");
 const PostModel = require('./models/Post');
 
+// Controllers import
+const { login } = require("./Contorllers/login.controller");
+const { Register } = require("./Contorllers/Register.controller");
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: 'http://localhost:5173', // specify the frontend URL
-    credentials: true, }));
+    mode: "no-cors"
+}));
 app.use('/uploads', express.static(__dirname + "/uploads"))
 
 // salt for bcyrpt
@@ -31,39 +36,10 @@ const jwtSecret = "BestBloggs"
 mongoose.connect("mongodb+srv://pandeymridulwork:mridul891@cohort.vcnsyzk.mongodb.net/")
 
 // Register Api 
-app.post('/register', async (req, res) => {
-    const { username, password } = req.body;
-    try {
-
-        const userDoc = await UserModel.create({
-            username,
-            password: bcrypt.hashSync(password, salt)
-        })
-        res.json(userDoc)
-    } catch (error) {
-        res.status(400).json(error);
-    }
-})
+app.post('/register', Register)
 
 // Login Endpoint
-app.post('/login', async (req, res) => {
-    const { username, password } = req.body;
-    const userDoc = await UserModel.findOne({ username });
-    const passok = bcrypt.compareSync(password, userDoc.password)
-    if (passok) {
-        // logged in
-        jwt.sign({ username, id: userDoc._id }, jwtSecret, {}, (err, token) => {
-            if (err) throw err;
-            res.cookie("token", token).json({
-                id: userDoc._id,
-                username
-            })
-        })
-    }
-    else {
-        res.status(400).json("wrong Credentials")
-    }
-})
+app.post('/login', login)
 
 // profile endpoint
 app.get('/profile', async (req, res) => {
