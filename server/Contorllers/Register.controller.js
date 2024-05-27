@@ -1,5 +1,6 @@
 const UserModel = require("../models/User");
 const bcrypt = require('bcryptjs');
+const salt = bcrypt.genSaltSync(10);
 
 const register = async (req, res) => {
     const { username, password } = req.body;
@@ -15,4 +16,4 @@ const register = async (req, res) => {
     }
 }
 
-module.exports = { Register }
+module.exports = { register }

@@ -3,7 +3,6 @@ const express = require("express");
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
 const app = express();
-const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
@@ -18,13 +17,11 @@ const PostModel = require('./models/Post');
 
 // Controllers import
 const { login } = require("./Contorllers/login.controller");
-const { Register } = require("./Contorllers/Register.controller");
+const { register } = require("./Contorllers/Register.controller");
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-    mode: "no-cors"
-}));
+app.use(cors({mode: "no-cors"}));
 app.use('/uploads', express.static(__dirname + "/uploads"))
 
 // salt for bcyrpt
@@ -36,7 +33,7 @@ const jwtSecret = "BestBloggs"
 mongoose.connect("mongodb+srv://pandeymridulwork:mridul891@cohort.vcnsyzk.mongodb.net/")
 
 // Register Api 
-app.post('/register', Register)
+app.post('/register', register)
 
 // Login Endpoint
 app.post('/login', login)
