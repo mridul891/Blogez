@@ -22,10 +22,12 @@ const { register } = require("./Contorllers/Register.controller");
 app.use(express.json());
 app.use(cookieParser());
 const corsOptions = {
-    origin: 'http://localhost:5173', // Specify the allowed origin
+    origin: 'http://localhost:5173', // Replace with your React app's URL
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
-app.use(cors({ mode: "no-cors" }));
+app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions));
 app.use('/uploads', express.static(__dirname + "/uploads"))
 
 // salt for bcyrpt
