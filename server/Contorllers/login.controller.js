@@ -1,6 +1,7 @@
 const UserModel = require("../models/User");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const jwtSecret = "BestBloggs"
 
 
 const login = async (req, res) => {
