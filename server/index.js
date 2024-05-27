@@ -22,8 +22,7 @@ const { register } = require("./Contorllers/Register.controller");
 app.use(express.json());
 app.use(cookieParser());
 const corsOptions = {
-    origin: '*', // Replace with your React app's URL
-    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+    origin: '*', // Replace with your React app's URL// Allow credentials (cookies, authorization headers, etc.)
 };
 app.use(cors(corsOptions));
 
