@@ -21,7 +21,11 @@ const { register } = require("./Contorllers/Register.controller");
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({mode: "no-cors"}));
+const corsOptions = {
+    origin: 'http://localhost:5173', // Specify the allowed origin
+    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+};
+app.use(cors(corsOptions));
 app.use('/uploads', express.static(__dirname + "/uploads"))
 
 // salt for bcyrpt

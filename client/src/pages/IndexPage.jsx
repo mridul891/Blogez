@@ -4,7 +4,10 @@ import Post from "../Component/Post";
 const IndexPage = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    fetch("https://blogez.onrender.com/post", { method: "GET" })
+    fetch("https://blogez.onrender.com/post", {
+      method: "GET",
+      credentials: "include",
+    })
       .then((response) => response.json())
       .then((post) => setPosts(post));
   }, []);
