@@ -121,7 +121,7 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
 
         const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
         if (!isAuthor) {
-            res.status(400).json('You are not an author')
+           return res.status(400).json('You are not an author')
         }
         await postDoc.updateOne({
             title,
@@ -129,7 +129,6 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
             content,
             cover: newPath ? newPath : postDoc.cover
         })
-
         res.json(postDoc)
     })
 });

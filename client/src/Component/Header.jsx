@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "./../Context/UserContext";
 
 const Header = () => {
   const { setUserInfo, userInfo } = useContext(UserContext);
-
+  const navigate = useNavigate();
   // fetching  whether user is logged in or not
   // useEffect(() => {
   //   fetch("http://localhost:3000/profile", {
@@ -20,6 +20,7 @@ const Header = () => {
       credentials: "include",
       method: "POST",
     });
+    navigate("/");
     setUserInfo(null);
   };
 

@@ -23,10 +23,6 @@ const Editpost = () => {
       });
   }, []);
 
-  if (redirect) {
-    return <Navigate to={"/post/" + id} />;
-  }
-
   const updatePost = async (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -46,6 +42,10 @@ const Editpost = () => {
       setRedirect(true);
     }
   };
+  
+  if (redirect) {
+    return <Navigate to={"/post/" + id} />;
+  }
   return (
     <form onSubmit={updatePost}>
       <input
