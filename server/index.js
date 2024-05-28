@@ -22,8 +22,9 @@ const { register } = require("./Contorllers/Register.controller");
 app.use(express.json());
 app.use(cookieParser());
 const corsOptions = {
-    origin: 'http://localhost:5173',// Replace with your React app's URL
-    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+    origin: '*', // Allow all origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
 };
 app.use(cors(corsOptions));
 
@@ -121,7 +122,7 @@ app.put('/post', uploadMiddleware.single('file'), async (req, res) => {
 
         const isAuthor = JSON.stringify(postDoc.author) === JSON.stringify(info.id);
         if (!isAuthor) {
-           return res.status(400).json('You are not an author')
+            return res.status(400).json('You are not an author')
         }
         await postDoc.updateOne({
             title,
