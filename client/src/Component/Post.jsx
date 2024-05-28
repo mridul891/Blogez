@@ -1,7 +1,6 @@
 import { format } from "date-fns";
 import { Link } from "react-router-dom";
 const Post = ({ _id, title, summary, content, cover, createdAt, author }) => {
-  
   return (
     <div className="post">
       <div className="image">

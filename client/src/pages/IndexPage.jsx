@@ -6,7 +6,7 @@ const IndexPage = () => {
   useEffect(() => {
     fetch("https://blogez.onrender.com/post", {
       method: "GET",
-      credentials: "include",
+      // credentials: "include",
     })
       .then((response) => response.json())
       .then((post) => setPosts(post));

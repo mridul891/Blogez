@@ -13,7 +13,7 @@ const Editpost = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch("https://blogez.onrender.com/post/" + id, { credentials: "include" })
+    fetch("https://blogez.onrender.com/post/" + id, )
       .then((response) => response.json())
       .then((postinfo) => {
         console.log(postinfo);
@@ -36,7 +36,7 @@ const Editpost = () => {
     const response = await fetch("https://blogez.onrender.com/post", {
       method: "PUT",
       body: data,
-      credentials: "include",
+      // credentials: "include",
     });
     if (response.ok) {
       setRedirect(true);

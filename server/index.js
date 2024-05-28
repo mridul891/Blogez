@@ -25,6 +25,7 @@ const corsOptions = {
     origin: '*', // Allow all origins
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
     allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+    mode:"no-cors"
 };
 app.use(cors(corsOptions));
 
