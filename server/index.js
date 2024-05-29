@@ -82,7 +82,7 @@ app.post('/post', cors(corsOptions), uploadMiddleware.single('file'), async (req
     });
 });
 
-app.get('/post', async (req, res) => {
+app.get('/post', cors(corsOptions), async (req, res) => {
     res.json(
         await PostModel.find()
             .populate('author', ['username'])
