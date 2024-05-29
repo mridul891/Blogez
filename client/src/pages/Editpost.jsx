@@ -36,7 +36,7 @@ const Editpost = () => {
     const response = await fetch("https://blogez.onrender.com/post", {
       method: "PUT",
       body: data,
-      // credentials: "include",
+      credentials: "include",
     });
     if (response.ok) {
       setRedirect(true);
