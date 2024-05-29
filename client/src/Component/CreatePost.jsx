@@ -45,8 +45,7 @@ const CreatePost = () => {
     const response = await fetch("https://blogez.onrender.com/post", {
       method: "POST",
       body: data,
-      // credentials: "include",
-      mode:"no-cors"
+      credentials: "include",
     });
 
     if (response.ok) {

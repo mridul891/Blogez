@@ -7,7 +7,7 @@ const SinglePost = () => {
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
   useEffect(() => {
-    fetch(`https://blogez.onrender.com/post/${id}`,)
+    fetch(`https://blogez.onrender.com/post/${id}`,{credentials:"include"})
       .then((response) => response.json())
       .then((postInfo) => setPostinfo(postInfo));
   }, []);
