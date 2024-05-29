@@ -67,7 +67,7 @@ const Editpost = () => {
       />
 
       <Editor value={content} onChange={setContent} />
-      <button style={{ marginTop: "5px" }}>Create Post</button>
+      <button style={{ marginTop: "5px" }}>Edit Post</button>
     </form>
   );
 };

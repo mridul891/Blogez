@@ -22,7 +22,7 @@ const { register } = require("./Contorllers/Register.controller");
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(cors());
+app.use(cors({ credentials: true, origin: ["http://localhost:5173", "https://blogez.vercel.app/"] }));
 
 app.use('/uploads', express.static(__dirname + "/uploads"))
 
