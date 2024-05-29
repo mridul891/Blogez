@@ -13,7 +13,7 @@ const Editpost = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch("https://blogez.onrender.com/post/" + id, )
+    fetch("https://blogez.onrender.com/post/" + id)
       .then((response) => response.json())
       .then((postinfo) => {
         console.log(postinfo);
@@ -42,7 +42,7 @@ const Editpost = () => {
       setRedirect(true);
     }
   };
-  
+
   if (redirect) {
     return <Navigate to={"/post/" + id} />;
   }

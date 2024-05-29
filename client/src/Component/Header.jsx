@@ -18,6 +18,7 @@ const Header = () => {
   const logout = async () => {
     await fetch("https://blogez.onrender.com/logout", {
       // credentials: "include",
+      mode:"no-cors",
       method: "POST",
     });
     navigate("/");
