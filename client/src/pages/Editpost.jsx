@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ReactQuill from "react-quill";
+
 import { Navigate, useParams } from "react-router-dom";
 import Editor from "./../Component/Editor";
 
@@ -21,7 +21,7 @@ const Editpost = () => {
         setContent(postinfo.content);
         setSummary(postinfo.summary);
       });
-  }, []);
+  }, [id]);
 
   const updatePost = async (e) => {
     e.preventDefault();
