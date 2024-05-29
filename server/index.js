@@ -35,7 +35,7 @@ const uploadMiddleware = multer({ dest: 'uploads/' });
 const UserModel = require("./models/User");
 const PostModel = require('./models/Post');
 const { login } = require("./Controllers/login.controller");
-const { register } = require("./Controllers/register.controller");
+const { register } = require("./Controllers/Register.controller");
 
 app.use('/uploads', express.static(__dirname + "/uploads"));
 
