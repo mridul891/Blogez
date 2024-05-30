@@ -2,12 +2,15 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { formatISO9075 } from "date-fns";
 import { UserContext } from "./../Context/UserContext";
+import SharePost from "./SharePost";
 const SinglePost = () => {
   const [postinfo, setPostinfo] = useState(null);
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
+  const shareUrl = window.location.href;
+  const title = "Check out this awesome Blog";
   useEffect(() => {
-    fetch(`https://blogez.onrender.com/post/${id}`,{credentials:"include"})
+    fetch(`https://blogez.onrender.com/post/${id}`, { credentials: "include" })
       .then((response) => response.json())
       .then((postInfo) => setPostinfo(postInfo));
   }, []);
@@ -17,6 +20,7 @@ const SinglePost = () => {
     <div className="post-page">
       <h1>{postinfo.title}</h1>
       <time>{formatISO9075(new Date(postinfo.createdAt))}</time>
+      <SharePost shareUrl={shareUrl} title={title} />
       <div className="author">by @{postinfo.author.username}</div>
 
       {userInfo.id === postinfo.author._id && (

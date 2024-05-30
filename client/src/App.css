@@ -164,7 +164,16 @@ div.post-page a.edit-btn {
   text-decoration: none;
 }
 
-a svg{
+a svg {
   height: 22px;
 }
 
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.sharepost{
+  margin: 10px;
+}
