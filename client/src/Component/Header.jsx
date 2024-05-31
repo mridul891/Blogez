@@ -16,7 +16,7 @@ const Header = () => {
 
   // Loggout functionality
   const logout = async () => {
-    await fetch("https://blogez.onrender.com/logout", {
+    await fetch("http://localhost:3000/logout", {
       credentials: "include",
       mode:"no-cors",
       method: "POST",

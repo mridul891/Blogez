@@ -152,7 +152,7 @@ div.edit-row {
   text-align: center;
   margin-bottom: 20px;
 }
-div.post-page a.edit-btn {
+div.post-page .edit-btn {
   background-color: #333;
   color: #fff;
   padding: 15px 30px;
@@ -164,7 +164,7 @@ div.post-page a.edit-btn {
   text-decoration: none;
 }
 
-a svg {
+ svg {
   height: 22px;
 }
 

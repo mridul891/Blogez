@@ -6,7 +6,7 @@ const Register = () => {
 
   async function handleRegister(e) {
     e.preventDefault();
-    const response = await fetch("https://blogez.onrender.com/register", {
+    const response = await fetch("http://localhost:3000/register", {
       method: "POST",
        credentials: 'include',
       body: JSON.stringify({ username, password }),

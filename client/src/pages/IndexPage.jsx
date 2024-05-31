@@ -4,7 +4,7 @@ import Post from "../Component/Post";
 const IndexPage = () => {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
-    fetch("https://blogez.onrender.com/post", {
+    fetch("http://localhost:3000/post", {
       method: "GET",
       credentials: "include",
     })
