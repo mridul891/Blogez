@@ -8,7 +8,7 @@ const dotenv = require("dotenv")
 
 // Use CORS middleware
 app.use(cors({
-    origin: "*",
+    origin: "http://localhost:5173/",
     methods: "GET,POST,PUT",
     credentials: true
 }));
