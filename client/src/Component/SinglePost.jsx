@@ -11,13 +11,13 @@ const SinglePost = () => {
   const shareUrl = window.location.href;
   const title = "Check out this awesome Blog";
   useEffect(() => {
-    fetch(`http://localhost:3000/post/${id}`, { credentials: "include" })
+    fetch(`https://blogez.onrender.com/post/${id}`, { credentials: "include" })
       .then((response) => response.json())
       .then((postInfo) => setPostinfo(postInfo));
   }, []);
 
   const HandleDelete = async () => {
-    const response = await fetch(`http://localhost:3000/post/${id}`, {
+    const response = await fetch(`https://blogez.onrender.com/post/${id}`, {
       method: "POST",
       credentials: "include",
     });
