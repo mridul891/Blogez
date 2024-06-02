@@ -7,11 +7,7 @@ const multer = require("multer");
 const dotenv = require("dotenv")
 
 // Use CORS middleware
-app.use(cors({
-    origin: "http://localhost:5173/",
-    methods: "GET,POST,PUT",
-    credentials: true
-}));
+app.use(cors({origin:["http://localhost:5173" ,"http://127.0.0.1:5173"], credentials: true }));
 
 // dotenv config 
 dotenv.config({
@@ -56,7 +52,7 @@ app.get('/post', getpost);
 
 app.get('/post/:id', postById);
 
-app.put('/postedit', uploadMiddleware.single('file'), editpost);
+app.post('/postedit', uploadMiddleware.single('file'), editpost);
 
 app.post('/post/:id', deletepost);
 
