@@ -55,7 +55,7 @@ app.get('/post', getpost);
 
 app.get('/post/:id', postById);
 
-app.put('/post', uploadMiddleware.single('file'), editpost);
+app.put('/postedit', uploadMiddleware.single('file'), editpost);
 
 app.post('/post/:id', deletepost);
 
