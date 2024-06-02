@@ -8,7 +8,8 @@ const dotenv = require("dotenv")
 
 // Use CORS middleware
 app.use(cors({
-    origin: ["*"],
+    origin: "*",
+    methods: ['GET', 'POST', "PUT"],
     credentials: true
 }));
 
