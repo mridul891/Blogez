@@ -7,7 +7,7 @@ const multer = require("multer");
 const dotenv = require("dotenv")
 
 // Use CORS middleware
-app.use(cors({origin:["http://localhost:5173" ,"http://127.0.0.1:5173","https://blogez.vercel.app"], credentials: true }));
+app.use(cors({ origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://blogez.vercel.app"], credentials: true }));
 
 // dotenv config 
 dotenv.config({
@@ -31,10 +31,11 @@ const { postById } = require("./Controllers/getpostbyid.controller");
 const { deletepost } = require("./Controllers/deletepost.controller");
 const { editpost } = require("./Controllers/editpost.controller");
 
+
 app.use('/uploads', express.static(__dirname + "/uploads"));
 
 
-
+const port = process.env.PORT || 3000
 mongoose.connect(process.env.MONGODB_URL);
 
 // Endpoints
@@ -56,4 +57,5 @@ app.post('/postedit', uploadMiddleware.single('file'), editpost);
 
 app.post('/post/:id', deletepost);
 
-app.listen(3000, () => console.log("Server running at port localhost:3000"));
+app.listen(port, () => console.log("Server running at port localhost:3000"));
+
