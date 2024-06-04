@@ -7,7 +7,12 @@ const multer = require("multer");
 const dotenv = require("dotenv")
 
 // Use CORS middleware
-app.use(cors({ origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://blogez.vercel.app"], credentials: true }));
+app.use(cors(
+    {
+        origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://blogez.vercel.app"],
+        credentials: true
+    }
+));
 
 // dotenv config 
 dotenv.config({
@@ -34,6 +39,13 @@ const { editpost } = require("./Controllers/editpost.controller");
 
 app.use('/uploads', express.static(__dirname + "/uploads"));
 
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    next();
+});
+
 
 const port = process.env.PORT || 3000
 mongoose.connect(process.env.MONGODB_URL);
@@ -53,7 +65,9 @@ app.get('/post', getpost);
 
 app.get('/post/:id', postById);
 
-app.post('/postedit', uploadMiddleware.single('file'), editpost);
+app.post('/postedit', cors(
+    { origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://blogez.vercel.app"], credentials: true }
+), uploadMiddleware.single('file'), editpost);
 
 app.post('/post/:id', deletepost);
 

@@ -13,7 +13,11 @@ const Editpost = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch("https://blogez.onrender.com/post/" + id, { credentials: "include" })
+    fetch(
+      "https://blogez.onrender.com/post/" +
+        id,
+      { method: "GET", credentials: "include" }
+    )
       .then((response) => response.json())
       .then((postinfo) => {
         console.log(postinfo);
@@ -21,7 +25,7 @@ const Editpost = () => {
         setContent(postinfo.content);
         setSummary(postinfo.summary);
       });
-  }, [id]);
+  }, []);
 
   const updatePost = async (e) => {
     e.preventDefault();
@@ -33,11 +37,14 @@ const Editpost = () => {
     if (files?.[0]) {
       data.set("file", files?.[0]);
     }
-    const response = await fetch("https://blogez.onrender.com/postedit", {
-      method: "POST",
-      body: data,
-      credentials: "include",
-    });
+    const response = await fetch(
+      "https://blogez.onrender.com/postedit",
+      {
+        method: "POST",
+        body: data,
+        credentials: "include"
+      }
+    );
     if (response.ok) {
       setRedirect(true);
     }

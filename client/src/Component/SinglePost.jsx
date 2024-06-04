@@ -82,7 +82,7 @@ const SinglePost = () => {
       )}
 
       <div className="image">
-        <img src={`http://localhost:3000/${postinfo.cover}`} alt="" />
+        <img src={`https://blogez.onrender.com/${postinfo.cover}`} alt="" />
       </div>
       <div
         className="content"
