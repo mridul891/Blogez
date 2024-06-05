@@ -65,9 +65,7 @@ app.get('/post', getpost);
 
 app.get('/post/:id', postById);
 
-app.post('/postedit', cors(
-    { origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://blogez.vercel.app"], credentials: true }
-), uploadMiddleware.single('file'), editpost);
+app.post('/postedit', editpost);
 
 app.post('/post/:id', deletepost);
 
