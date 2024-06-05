@@ -21,12 +21,7 @@ dotenv.config({
 // app.options('*', cors(corsOptions)); // Pre-flight requests
 
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-});
+
 app.use(express.json());
 app.use(cookieParser());
 
@@ -42,6 +37,7 @@ const { getpost } = require("./Controllers/getpost.controller");
 const { postById } = require("./Controllers/getpostbyid.controller");
 const { deletepost } = require("./Controllers/deletepost.controller");
 const { editpost } = require("./Controllers/editpost.controller");
+const { accessMiddleware } = require("./Middleware/Access.middleware");
 
 
 app.use('/uploads', express.static(__dirname + "/uploads"));
@@ -53,7 +49,7 @@ mongoose.connect(process.env.MONGODB_URL);
 // Endpoints
 app.post('/register', register);
 
-app.post('/login', login);
+app.post('/login', accessMiddleware, login);
 
 app.get('/profile', profile);
 
