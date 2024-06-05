@@ -3,17 +3,17 @@ const jwtSecret = "BestBloggs"
 const fs = require("fs");
 const PostModel = require("../models/Post");
 const editpost = async (req, res) => {
-    // let newPath = null;
-    // if (req.file) {
-    //     const { originalname, path } = req.file;
-    //     const parts = originalname.split('.');
-    //     const ext = parts[parts.length - 1];
-    //     newPath = path + '.' + ext;
-    //     fs.renameSync(path, newPath);
-    // }
+    let newPath = null;
+    if (req.file) {
+        const { originalname, path } = req.file;
+        const parts = originalname.split('.');
+        const ext = parts[parts.length - 1];
+        newPath = path + '.' + ext;
+        fs.renameSync(path, newPath);
+    }
 
     const { token } = req.cookies;
-    jwt.verify(token, jwtSecret, {}, async (err, info) => {
+    jwt.verify(token, jwtSecret, async function (err, info) {
         if (err) throw err;
 
         const { id, title, summary, content } = req.body;
@@ -27,7 +27,7 @@ const editpost = async (req, res) => {
             title,
             summary,
             content,
-            //  cover: newPath ? newPath : postDoc.cover
+            cover: newPath ? newPath : postDoc.cover
         });
         res.json(postDoc);
     });
