@@ -37,7 +37,7 @@ const { getpost } = require("./Controllers/getpost.controller");
 const { postById } = require("./Controllers/getpostbyid.controller");
 const { deletepost } = require("./Controllers/deletepost.controller");
 const { editpost } = require("./Controllers/editpost.controller");
-const { accessMiddleware } = require("./Middleware/Access.middleware");
+
 
 
 app.use('/uploads', express.static(__dirname + "/uploads"));
@@ -49,7 +49,7 @@ mongoose.connect(process.env.MONGODB_URL);
 // Endpoints
 app.post('/register', register);
 
-app.post('/login', accessMiddleware, login);
+app.post('/login', login);
 
 app.get('/profile', profile);
 
@@ -61,7 +61,7 @@ app.get('/post', getpost);
 
 app.get('/post/:id', postById);
 
-app.post('/postedit', accessMiddleware, editpost);
+app.post('/postedit', editpost);
 
 app.post('/post/:id', deletepost);
 

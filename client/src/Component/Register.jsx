@@ -8,12 +8,11 @@ const Register = () => {
     e.preventDefault();
     const response = await fetch("https://blogez.onrender.com/register", {
       method: "POST",
-       credentials: 'include',
+      credentials: "include",
       body: JSON.stringify({ username, password }),
       headers: {
         "Content-Type": "application/json",
       },
-      
     });
 
     if (response.status === 200) {
