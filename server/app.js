@@ -61,7 +61,7 @@ app.get('/post', getpost);
 
 app.get('/post/:id', postById);
 
-app.post('/postedit', editpost);
+app.post('/postedit', accessMiddleware, editpost);
 
 app.post('/post/:id', deletepost);
 
