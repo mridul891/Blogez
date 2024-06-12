@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const dotenv = require("dotenv")
-
+const path = require('path')
 // Use CORS middleware
 app.use(cors(
     {
