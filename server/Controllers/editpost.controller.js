@@ -27,7 +27,7 @@ const editpost = async (req, res) => {
             title,
             summary,
             content,
-            cover: newPath ? newPath : postDoc.cover
+            // cover: newPath ? newPath : postDoc.cover
         });
         res.json(postDoc);
     });
