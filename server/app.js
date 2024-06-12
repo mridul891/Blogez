@@ -25,7 +25,7 @@ dotenv.config({
 app.use(express.json());
 app.use(cookieParser());
 
-const uploadMiddleware = multer({ dest: 'uploads/' });
+// const uploadMiddleware = require('./middleware/multer');
 
 // Controllers
 const { login } = require("./Controllers/login.controller");
@@ -40,7 +40,7 @@ const { editpost } = require("./Controllers/editpost.controller");
 
 
 
-app.use('/uploads', express.static(__dirname + "/uploads"));
+// app.use('/uploads', express.static(__dirname + "/uploads"));
 
 
 const port = process.env.PORT || 3000
@@ -55,7 +55,7 @@ app.get('/profile', profile);
 
 app.post('/logout', logout);
 
-app.post('/post', uploadMiddleware.single('file'), createPost);
+app.post('/post', createPost);
 
 app.get('/post', getpost);
 
