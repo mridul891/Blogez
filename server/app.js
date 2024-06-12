@@ -19,9 +19,13 @@ dotenv.config({
     path: ".env"
 })
 // app.options('*', cors(corsOptions)); // Pre-flight requests
-
-
-
+// ----------deployment----------
+const __dirname1 = path.resolve();
+app.use(express.static(path.join(__dirname1, '/client/dist')))
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname1, 'client', 'dist', 'index.html'))
+})
+// -------------------------------
 app.use(express.json());
 app.use(cookieParser());
 
