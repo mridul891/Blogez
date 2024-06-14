@@ -15,8 +15,6 @@ const Login = () => {
       const response = await fetch("https://blogez.onrender.com/login", {
         method: "POST",
         body: JSON.stringify({ username, password }),
-        headers: { "Content-Type": "application/json" },
-      
         credentials: "include",
       });
 
