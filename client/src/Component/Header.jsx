@@ -17,7 +17,6 @@ const Header = () => {
   // Loggout functionality
   const logout = async () => {
     await fetch("https://blogez.onrender.com/logout", {
-      credentials: "include",
       method: "POST",
     });
     navigate("/");

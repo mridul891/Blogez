@@ -11,7 +11,7 @@ const SinglePost = () => {
   const shareUrl = window.location.href;
   const title = "Check out this awesome Blog";
   useEffect(() => {
-    fetch(`https://blogez.onrender.com/post/${id}`, { credentials: "include" })
+    fetch(`https://blogez.onrender.com/post/${id}`)
       .then((response) => response.json())
       .then((postInfo) => setPostinfo(postInfo));
   }, []);
