@@ -9,10 +9,10 @@ const path = require('path')
 // Use CORS middleware
 app.use(cors(
     {
-        origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://blogez.vercel.app"],
-        methods: ["GET", "POST"],
-        credentials: true,
-        allowedHeaders: "*",
+        "origin": "*",
+        "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+        "preflightContinue": false,
+        "optionsSuccessStatus": 204
     }
 ));
 
@@ -20,9 +20,9 @@ app.use(cors(
 dotenv.config({
     path: ".env"
 })
-// app.options('*', cors(corsOptions)); // Pre-flight requests
--
-app.use(express.json());
+    // app.options('*', cors(corsOptions)); // Pre-flight requests
+    -
+    app.use(express.json());
 app.use(cookieParser());
 
 const uploadMiddleware = multer({ dest: 'uploads/' });
