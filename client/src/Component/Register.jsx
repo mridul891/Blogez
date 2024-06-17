@@ -9,6 +9,7 @@ const Register = () => {
     const response = await fetch("https://blogez.onrender.com/register", {
       method: "POST",
       body: JSON.stringify({ username, password }),
+      credentials:"include",
       headers: {
         "Content-Type": "application/json",
       },

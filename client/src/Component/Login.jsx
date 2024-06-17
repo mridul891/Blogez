@@ -15,7 +15,7 @@ const Login = () => {
       const response = await fetch("https://blogez.onrender.com/login", {
         method: "POST",
         body: JSON.stringify({ username, password }),
-
+        credentials: "include",
       });
 
       if (response.ok) {

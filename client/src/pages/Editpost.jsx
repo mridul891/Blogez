@@ -15,6 +15,8 @@ const Editpost = () => {
   useEffect(() => {
     fetch("https://blogez.onrender.com/post/" + id, {
       method: "GET",
+      credentials:"include"
+
     })
       .then((response) => response.json())
       .then((postinfo) => {
@@ -38,6 +40,8 @@ const Editpost = () => {
     const response = await fetch("https://blogez.onrender.com/postedit", {
       method: "POST",
       body: data,
+      credentials:"include"
+
     });
     if (response.ok) {
       setRedirect(true);

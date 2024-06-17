@@ -5,13 +5,15 @@ import { UserContext } from "./../Context/UserContext";
 import SharePost from "./SharePost";
 const SinglePost = () => {
   const [postinfo, setPostinfo] = useState(null);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
   const shareUrl = window.location.href;
   const title = "Check out this awesome Blog";
   useEffect(() => {
-    fetch(`https://blogez.onrender.com/post/${id}`)
+    fetch(`https://blogez.onrender.com/post/${id}`, {
+      credentials: "include",
+    })
       .then((response) => response.json())
       .then((postInfo) => setPostinfo(postInfo));
   }, []);
@@ -22,8 +24,8 @@ const SinglePost = () => {
       credentials: "include",
     });
 
-    if (response.ok){
-      navigate('/')
+    if (response.ok) {
+      navigate("/");
     }
   };
 
@@ -58,7 +60,7 @@ const SinglePost = () => {
 
           {/* Delete Post Button */}
           <button
-            style={{ marginLeft: "10px" ,width:"12rem"}}
+            style={{ marginLeft: "10px", width: "12rem" }}
             className="edit-btn"
             onClick={HandleDelete}
           >
